@@ -1,3 +1,7 @@
+# Rust
+- Rust 는 강한 정적 타입 시스템을 가진다. 하지만 타입 추론(type inference)도 수행한다.
+- 
+
 # Rust 명령어
 cargo new 프로젝트명: 새 프로젝트 생성
 <br>cargo build: 프로젝트 빌드(디폴트는 디버그 빌드), Cargo.lock 과 target/debug 디렉터리 생성
@@ -17,3 +21,9 @@ cargo new 프로젝트명: 새 프로젝트 생성
 ## 트레이트(trait)
 - 타입이 어떤 "행동"을 해야하는지 정의한 약속(규약)
 - Java 의 인터페이스와 비슷함
+
+## 정수형
+- i32 는 32bit 정수형(기본값)
+- u32 는 부호 없는 32bit 정수형
+- i64 는 64bit 정수형
+
