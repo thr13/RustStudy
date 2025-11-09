@@ -1,31 +1,43 @@
 # Rust
-- Rust 는 강한 정적 타입 시스템을 가진다. 하지만 타입 추론(type inference)도 수행한다.
-- 
+>Rust 는 강한 정적 타입 시스템을 가진다. 하지만 타입 추론(type inference)도 수행한다.
 
 # Rust 명령어
-cargo new 프로젝트명: 새 프로젝트 생성
-<br>cargo build: 프로젝트 빌드(디폴트는 디버그 빌드), Cargo.lock 과 target/debug 디렉터리 생성
-<br>cargo run: 한번에 프로젝트 빌드 및 실행(실행파일 생성)
-<br>cargo check: 컴파일 수행
-<br>cargo build --release: 릴리스 빌드 생성(target/release 에 실행파일 생성)
-<br>cargo update Cargo.lock 파일을 무시하고 Cargo.toml 에 버전 확인후 해당 버전을 Cargo.lock 에 기록
-<br>
-<br>둘 이상의 실행 가능한 바이너리를 만들 경우, src 디렉터리 내부에 bin 디렉터리 내부에 소스코드를 저장해야한다
-<br>그리고 cargo run 명령에 --bin 옵션을 사용하거나 Cargo.toml 에 기본 실행을 지정해야 한다
+>`cargo new 프로젝트명` 새 프로젝트 생성<br>
+`cargo build 프로젝트` 빌드(디폴트는 디버그 빌드), Cargo.lock 과 target/debug 디렉터리 생성<br>
+`cargo run` 한번에 프로젝트 빌드 및 실행(실행파일 생성)<br>
+`cargo check` 컴파일 수행<br>
+`cargo build --release` 릴리스 빌드 생성(target/release 에 실행파일 생성)<br>
+`cargo update` Cargo.lock 파일을 무시하고 Cargo.toml 에 버전 확인후 해당 버전을 Cargo.lock 에 기록<br><br>
+둘 이상의 실행 가능한 바이너리를 만들 경우, src 디렉터리 내부에 bin 디렉터리 내부에 소스코드를 저장해야한다<br>
+그리고 cargo run 명령에 --bin 옵션을 사용하거나 Cargo.toml 에 기본 실행을 지정해야 한다<br>
 
 ## 크레이트(crate)
-- Rust 코드 파일들의 모음
-- Rust 의 "패키지" 또는 "모듈 단위 프로그램" 이자, 컴파일러가 빌드할 수 있는 최소 단위
-- 외부 크레이트 == 라이브러리
+>Rust 코드 파일들의 모음<br>
+Rust 의 "패키지" 또는 "모듈 단위 프로그램" 이자, 컴파일러가 빌드할 수 있는 최소 단위<br>
+외부 크레이트 == 라이브러리
 
 ## 트레이트(trait)
-- 타입이 어떤 "행동"을 해야하는지 정의한 약속(규약)
-- Java 의 인터페이스와 비슷함
+>타입이 어떤 "행동"을 해야하는지 정의한 약속(규약)<br>
+Java 의 인터페이스와 비슷함
 
 ## 정수형
-- i32 는 32bit 정수형(기본값)
-- u32 는 부호 없는 32bit 정수형
-- i64 는 64bit 정수형
+>i32 는 32bit 정수형(기본값)<br>
+u32 는 부호 없는 32bit 정수형<br>
+i64 는 64bit 정수형
 
 ## 반복문
-- loop {내용} 으로 반복문을 설정할 수 있다. 그리고 break; 를 이용해 탈출하거나 Err Result 타입을 반환할 경우 반복문을 종료한다.
+>`loop {내용}` 으로 반복문을 설정할 수 있다. 그리고 break; 를 이용해 탈출하거나 Err Result 타입을 반환할 경우 반복문을 종료한다.
+
+## 변수
+>Rust 의 변수는 기본적으로 불변(immutable)이다.<br>
+변수명 앞에 `mut` 을 추가함으로써, 변수의 값을 바꿀수 있는 가변(mutability) 상태로 변경 가능하다<br>
+mut 을 추가하는 것은 '미래에 코드를 읽는 이들에게, 코드의 다른 부분에서 이 변수의 값이 변할 것이라는 의도를 전달한다'
+
+## 상수(constant)
+>상수는 불변 변수와 비슷하지만, mut 와 함께 사용할 수 없다<br>
+항상 불변 상태를 유지한다<br>
+let 키워드 대신 const 키워드로 선언하되, 값 타입을 반드시 명시해야 한다.<br>
+상수는 전역 스코프를 포함한 어떤 스코프에서도 선언이 가능하다.<br>
+반드시 상수 표현식으로만 설정될 수 있어야 하며, 런타임에서만 계산될 수 있는 결과값으로 사용하면 안된다.<br>
+상수는 대문자 및 단어사이에 밑줄(_)을 사용하는게 관례이다.<br>
+하드코딩 값에 상수를 사용한다
