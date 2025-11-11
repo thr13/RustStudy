@@ -25,7 +25,6 @@ fn main() {
 fn area(dimensions: (u32, u32)) -> u32 {
     dimensions.0 * dimensions.1 // 그러나 각 요소에 이름이 없는 튜플의 특성 때문에, 값을 인덱스로 접근해서 계산식이 불명확해졌다.
 }
- */
 // 2. 구조체로 리팩터링: 코드에 더 많은 의미를 담기
 struct Rectangle {
     width: u32,
@@ -46,4 +45,19 @@ fn main() {
 fn area(rectangle: &Rectangle) -> u32 { // 구조체 불변 참조자 타입
     rectangle.width * rectangle.height // Rectangle 인스턴스의 필드에 접근(빌린 구조체 인스턴스의 필드에 접근하는 것은 필드값을 이동시키지 않는다), 결과적으로 area 함수의 시그니처가 의미하는 바를 정확히 알려준다.
 }
+ */
+// Rust 는 디버깅 정보 출력 기능을 가지고 있다. 구조체에 디버깅 출력 기능을 적용할려면 명시적인 동의가 필요하다.
+#[derive(Debug)] // 외부 속성
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
 
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!("rect1 는 {:?}", rect1); // {} 내에 :? 을 추가함으로써 Debug 출력 형식 사용, 구조체 내 필드가 많은 경우 {:?} 대신 {:#?}을 사용하면 된다.
+}
