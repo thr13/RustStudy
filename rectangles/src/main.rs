@@ -77,7 +77,6 @@ fn main() {
 
     dbg!(&rect1); // Debug 포맷을 사용해서 값을 출력하는 방식, 표현식의 소유권을 가져와서 dbg! 매크로를 호출한 파일과 라인 번호를 결과값과 함께 출력하고 다시 소유권을 반환한다.
 }
- */
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -100,4 +99,37 @@ fn main() {
         "사각형의 넓이: {}", rect1.area() // 메서드 문법으로 Rectangle 인스턴스의 area 메서드를 호출할 수 있다.
     );
 }
+ */
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool { // Rectangle 을 읽기만 하므로 불변 참조자 사용
+        self.width > other.width && self.height > other.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+}
+
 
