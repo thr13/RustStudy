@@ -62,7 +62,6 @@ fn main() {
 
     println!("rect1 는 {:?}", rect1); // {} 내에 :? 을 추가함으로써 Debug 출력 형식 사용, 구조체 내 필드가 많은 경우 {:?} 대신 {:#?}을 사용하면 된다.
 }
- */
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -78,3 +77,27 @@ fn main() {
 
     dbg!(&rect1); // Debug 포맷을 사용해서 값을 출력하는 방식, 표현식의 소유권을 가져와서 dbg! 매크로를 호출한 파일과 라인 번호를 결과값과 함께 출력하고 다시 소유권을 반환한다.
 }
+ */
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle { // 구조체 콘텍스트에 함수를 정의하기 위해선, 구조체에 대한 impl 블록을 만들어야 한다.
+    fn area(&self) -> u32 { // 메서드의 첫 번째 매개변수는 항상 self 가 된다.
+        self.width * self.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!(
+        "사각형의 넓이: {}", rect1.area() // 메서드 문법으로 Rectangle 인스턴스의 area 메서드를 호출할 수 있다.
+    );
+}
+
