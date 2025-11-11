@@ -21,7 +21,7 @@ fn main() {
 fn calculate_length(s: &String) -> usize {
     s.len()
 }
-*/
+
 fn main() {
     let mut s = String::from("hello");
 
@@ -31,4 +31,60 @@ fn main() {
 
 fn change(some_string: &mut String) {
     some_string.push_str(", world");
+}
+
+fn main() {
+    let reference_to_nothing = dangle();
+}
+
+fn dangle() -> String { // &String 의 참조자 반환, String 은 직접 반환
+    let s = String::from("hello");
+
+    // &s // String 타입의 변수 s 의 참조자를 반환한다.
+    s
+} // 변수 s 는 스코프 밖으로 벗어나고 버려진다. 할당된 메모리는 해제된다. -> 코드에서 &s 를 반환할때 유효하지 않은 String 을 가르키는 참조자를 반환하는 행위이므로 에러 발생
+
+fn main() {
+    let mut s = String::from("hello world");
+    let word = first_word(s);
+
+    s.clear(); // String 을 비워서 "" 으로 만듦
+    // word 는 여전히 값 5가 있지만, 이 5를 의미 있게 사용할 문자열은 더 이상 없다. word 는 이제 유효하지 않는다.
+}
+
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+*/
+fn main() {
+    let my_string = String::from("hello world");
+    let word = first_word(&my_string[0..6]);
+    let word = first_word(&my_string[..]);
+    let word = first_word(&my_string); // String 의 전체 슬라이스와 동일한 String 의 참조자인 경우 작동한다.
+
+    let my_string_literal = "hello world";
+    let word = first_word(&my_string_literal[0..6]);
+    let word = first_word(&my_string_literal[..]);
+
+    let word = first_word(my_string_literal); // 문자열 리터럴은 곧 문자열 슬라이스이므로, 슬라이스 문법 없이 작동한다.
+}
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
