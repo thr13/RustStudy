@@ -46,6 +46,7 @@ fn area(rectangle: &Rectangle) -> u32 { // 구조체 불변 참조자 타입
     rectangle.width * rectangle.height // Rectangle 인스턴스의 필드에 접근(빌린 구조체 인스턴스의 필드에 접근하는 것은 필드값을 이동시키지 않는다), 결과적으로 area 함수의 시그니처가 의미하는 바를 정확히 알려준다.
 }
  */
+/*
 // Rust 는 디버깅 정보 출력 기능을 가지고 있다. 구조체에 디버깅 출력 기능을 적용할려면 명시적인 동의가 필요하다.
 #[derive(Debug)] // 외부 속성
 struct Rectangle {
@@ -60,4 +61,20 @@ fn main() {
     };
 
     println!("rect1 는 {:?}", rect1); // {} 내에 :? 을 추가함으로써 Debug 출력 형식 사용, 구조체 내 필드가 많은 경우 {:?} 대신 {:#?}을 사용하면 된다.
+}
+ */
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn main() {
+    let scale = 2;
+    let rect1 = Rectangle {
+        width: dbg!(30 * scale), // 표현식을 deg! 로 감싼것은 deg! 가 표현식의 소유권을 반환하면서 dbg! 호출을 하지 않았을 떄와 같은 값이 width 필드에 입력되기 때문.
+        height: 50,
+    };
+
+    dbg!(&rect1); // Debug 포맷을 사용해서 값을 출력하는 방식, 표현식의 소유권을 가져와서 dbg! 매크로를 호출한 파일과 라인 번호를 결과값과 함께 출력하고 다시 소유권을 반환한다.
 }
