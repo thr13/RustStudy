@@ -113,6 +113,13 @@ impl Rectangle {
     fn can_hold(&self, other: &Rectangle) -> bool { // Rectangle 을 읽기만 하므로 불변 참조자 사용
         self.width > other.width && self.height > other.height
     }
+
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
 }
 
 fn main() {
