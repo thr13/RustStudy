@@ -75,3 +75,21 @@ fn main() {
 }
  */
 
+/*
+Rust 에는 NULL 은 없지만, 값의 존재 또는 값의 부재를 표현할 수 있는 열거형 Option<T> 가 있다.
+enum Option<T> {
+    None,
+    Some(T),
+}
+Option<T> 는 Rust 에서 기본으로 import 하는 목록인 프렐루드(prelude)에 포함되어 있다. 또, 배리언트도 마찬가지로 프렐루드에 포함되어 있다. 따라서 None, Some 배리언트 앞에 Option:: 을 붙이지 않아도 된다.
+ */
+fn main() {
+    let some_number = Some(5); // Option<i32> 타입, Some 배리언트 내에 어떤 값을 명시했기 때문에 Rust 는 이 타입을 추론할 수 있다.
+    let some_char = Some('e'); // Option<char> 타입
+
+    let absent_number: Option<i32> = None; // 반면 absent_number 는 Option 타입을 명시해야 한다. None 값만 봐서는 Some 배리언트가 어떤 타입의 값을 가질지 컴파일러가 추론할 수 없기 때문이다.
+
+    let x: i8 = 5;
+    let y: Option<i8> = Some(5);
+    //let sum = x + y; // Option<i8> 과 i8 은 서로 다른 타입이므로 컴파일 에러 발생, T에 대한 연산을 수행하기 전에 Option<T>를 T로 변환해야 한다. -> 이는 실제로 NULL 인데 NULL 이 아니라고 가정하는 상황을 발견하는데 도움이 된다.
+}
