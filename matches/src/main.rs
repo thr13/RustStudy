@@ -79,6 +79,7 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
  */
+/*
 // 포괄 패턴과 _자리표시자
 fn main() {
     let dice_roll = 9;
@@ -96,3 +97,33 @@ fn add_fancy_hat() {}
 fn remove_fancy_hat() {}
 // fn move_player(num_spaces: u8) {}
 // fn reroll() {}
+ */
+// match 대신 if let 을 사용한 간결한 제어 흐름
+fn main() {
+    let config_max = Some(3u8);
+    /*
+    match config_max {
+        Some => println!("The maximum is configured to be {}", max),
+        _ => (), // None 값에 대해서 아무런 처리 x -> match 표현식을 만족시키려면 딱 하나의 배리언트만 처리해도 되나 이는 보일러 플레이트 코드이다.
+    }
+     */
+    if let Some(max) = config_max { // if let 은 패턴 = 표현식을 입력받는다. -> match 와 동일한 방식으로 작동 -> 표현식은 match 에 주어진 것이고 패턴은 이 match 의 첫 번째 갈래와 같다. -> 패턴 Some(max) 의 max 는 Some 내부 값에 바인딩 된다 -> if let 본문 블록 내에서 max 사용가능
+        println!("The maximum is configured to be {}", max);
+    }
+}
+/*
+// if let 은 else 를 포함시킬 수 있다. 아래 match 문과 if let 문은 같은 로직이다.
+fn main() {
+    let mut count = 0;
+    match coin {
+        Coin::Quarter(state) => println!("State quarter from {:?}!", state),
+        _ => count += 1,
+    }
+
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        count += 1;
+    }
+}
+ */
